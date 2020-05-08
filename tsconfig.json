@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+
+    "target": "es2017",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
+    "module": "commonjs",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,                           /* Enable all strict type-checking options. */
+    "strictPropertyInitialization": false,
+    "outDir": "dist",
+    "sourceMap": true,
+    "baseUrl": ".",                       /* Base directory to resolve non-absolute module names. */
+    "paths": {
+      "@99_base_common/*" : ["src/99_base/common/*"],
+      "@99_base_controller/*" : ["src/99_base/controller/*"],
+      "@99_base_model/*" : ["src/99_base/model/*"],
+      "@99_base_service/*": ["src/99_base/service/*"],
+      "@99_base_repository/*": ["src/99_base/repository/*"],
+      "@99_base_entity/*": ["src/99_base/entity/*"],
+      "@99_base_utils/*" : ["src/99_base/utils/*"],
+      "@01_users_controller/*" : ["src/01_users/controller/*"],
+      "@01_users_service/*" : ["src/01_users/service/*"]
+    },                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    "esModuleInterop": true,                  /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
+  },
+  "compileOnSave": true,
+  "include": ["src"]
+}

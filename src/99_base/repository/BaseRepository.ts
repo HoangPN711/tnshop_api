@@ -1,4 +1,4 @@
-import {BaseEntity} from "@99_base_entity/BaseEntity";
+import {BaseEntity} from "./entity/BaseEntity";
 import {EntityRepository,AbstractRepository} from "typeorm"
 import {BaseModel} from "@99_base_model/BaseModel";
 import {BaseUtils} from "@99_base_utils/BaseUtils";

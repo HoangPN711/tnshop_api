@@ -1,44 +1,44 @@
 import {getCustomRepository} from "typeorm";
-import {UserRepository} from "../repository/UserRepository";
-import {UserModel} from "../model/UserModel";
+import {UserProfileRepository} from "../repository/UserProfileRepository";
+import {UserProfileModel} from "../model/UserProfileModel";
 import {BaseService} from "@99_base_service/BaseService";
 import {BaseContext} from "@99_base_common/BaseContext";
 
 export class UserService extends BaseService{
 
-    public async getUserList(): Promise<UserModel[]> {
-        const userRepository = getCustomRepository(UserRepository);
-        let result = await userRepository.findAll();
+    public async getUserList(): Promise<UserProfileModel[]> {
+        const userProfileRepository = getCustomRepository(UserProfileRepository);
+        let result = await userProfileRepository.findAll();
 
         return result;
     }
 
-    public async getUserByUserId(userId:string): Promise<UserModel[]> {
-        const userRepository = getCustomRepository(UserRepository);
-        let result = await userRepository.findByUserId(userId);
+    public async getUserByUserId(userId:string): Promise<UserProfileModel[]> {
+        const userProfileRepository = getCustomRepository(UserProfileRepository);
+        let result = await userProfileRepository.findByUserId(userId);
 
         return result;
     }
 
-    public async createUser(context: BaseContext, userModel:UserModel): Promise<UserModel> {
-        const userRepository = getCustomRepository(UserRepository);
+    public async createUser(context: BaseContext, userModel:UserProfileModel): Promise<UserProfileModel> {
+        const userProfileRepository = getCustomRepository(UserProfileRepository);
         this.makeWho(context,userModel,true);
-        let result = await userRepository.createUser(userModel);
+        let result = await userProfileRepository.createUser(userModel);
 
         return result;
     }
 
-    public async updateUser(context: BaseContext, userModel:UserModel): Promise<UserModel> {
-        const userRepository = getCustomRepository(UserRepository);
+    public async updateUser(context: BaseContext, userModel:UserProfileModel): Promise<UserProfileModel> {
+        const userProfileRepository = getCustomRepository(UserProfileRepository);
         this.makeWho(context,userModel,false);
-        let result = await userRepository.updateUser(userModel);
+        let result = await userProfileRepository.updateUser(userModel);
 
         return result;
     }
 
     public deleteUser(id:number)  {
-        const userRepository = getCustomRepository(UserRepository);
-        userRepository.deleteById(id);
+        const userProfileRepository = getCustomRepository(UserProfileRepository);
+        userProfileRepository.deleteById(id);
 
         return 'delete successful';
     }

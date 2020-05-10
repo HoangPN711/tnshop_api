@@ -1,6 +1,6 @@
 import {BaseModel} from "@99_base_model/BaseModel";
 
-export class UserModel extends BaseModel{
+export class UserProfileModel extends BaseModel{
 
     public userId : string;
     public fullName : string;

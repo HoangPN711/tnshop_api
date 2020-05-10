@@ -11,7 +11,7 @@ const app = express();
 app.use(helmet());
 
 
-export const dbconnection = createConnection({
+export const dbConnection = createConnection({
     type: "mysql",
     host: "localhost",
     port: 3306,

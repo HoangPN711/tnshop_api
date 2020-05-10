@@ -1,8 +1,8 @@
 import {Entity, Column} from "typeorm"
-import {BaseEntity} from "@99_base_entity/BaseEntity";
+import {BaseEntity} from "@99_base_repository/entity/BaseEntity";
 
-@Entity("api_user")
-export class UserEntity extends BaseEntity{
+@Entity("user_profile")
+export class UserProfileEntity extends BaseEntity{
 
     @Column({name :"user_id"})
     userId : string;

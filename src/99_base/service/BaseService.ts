@@ -1,5 +1,4 @@
-import {BaseContext} from "../middeware/BaseContext";
-import {BaseUtils} from "../utils/BaseUtils";
+import {BaseContext} from "../common/BaseContext";
 import {BaseModel} from "../model/BaseModel";
 
 export class BaseService {

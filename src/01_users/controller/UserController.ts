@@ -5,7 +5,7 @@ import {IBaseResponseModel} from "@99_base_model/IBaseResponseModel";
 import * as httpStatusCode from "http-status-codes"
 import {UserService} from "../service/UserService"
 import {BaseUtils} from "@99_base_utils/BaseUtils";
-import {UserModel} from "../model/UserModel";
+import {UserProfileModel} from "../model/UserProfileModel";
 import {BaseContext} from "@99_base_common/BaseContext";
 
 @Controller('api/user')
@@ -46,10 +46,10 @@ export class UserController extends BaseController {
     public async createUser(req: Request, res: Response) {
         const userService = new UserService();
         const result = {} as IBaseResponseModel;
-
+        const context = new BaseContext();
         context.userId = "admin";
 
-        const userModel = new UserModel();
+        const userModel = new UserProfileModel();
 
         userModel.userId = req.body.userId;
         userModel.fullName = req.body.fullName;
@@ -71,7 +71,7 @@ export class UserController extends BaseController {
 
         context.userId = "hoangpn";
 
-        const userModel = new UserModel();
+        const userModel = new UserProfileModel();
         const reqBody = req.body;
         userModel.id = reqBody.pk;
         userModel.userId = reqBody.userId;

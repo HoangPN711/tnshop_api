@@ -1,16 +1,23 @@
 import { Request, Response } from 'express';
 import { Controller, Post } from '@overnightjs/core';
-import { BAD_REQUEST, OK, UNAUTHORIZED } from 'http-status-codes';
+import * as httpStatusCode from 'http-status-codes';
 import { sign } from 'jsonwebtoken';
+import {BaseController} from "./BaseController";
+import {IBaseResponseModel} from "@99_base_model/IBaseResponseModel";
+import {UserAuthService} from "../service/UserAuthService"
 
 @Controller('api/auth')
-export class AuthJwtController {
+export class AuthJwtController extends BaseController{
+
+    public constructor() {
+        super();
+    }
 
     @Post('')
-    private async authUser(req: Request, res: Response): Promise<Response> {
+    public async authUser(req: Request, res: Response){
 
-        const { login, password } = req.body;
-
+        const { username, password } = req.body;
+        const resultResponse = {} as IBaseResponseModel;
         const jwtConfig = {
             jwtSecret: '0n7gfEVifBZHJK2nN8X8XRHzmoUoAnNE',
             options: {
@@ -19,18 +26,23 @@ export class AuthJwtController {
         };
 
         try {
-            if (login === 'admin' && password === 'admin') {
-                const admToken = sign({ id: 'admin' }, jwtConfig.jwtSecret,           jwtConfig.options);
-                return res.status(OK).json({ jwt: admToken });
+            const userAuthService = new UserAuthService();
+
+            if (userAuthService.checkAuth(username, password)) {
+                const accessToken = sign({ id: username }, jwtConfig.jwtSecret,           jwtConfig.options);
+                resultResponse.statusCode = httpStatusCode.OK;
+                resultResponse.data = {"access_token:" : accessToken };
+                return this.responseSuccess(res,resultResponse);
             } else {
-                return res.status(UNAUTHORIZED).json({
-                    error: `Authentication Error`,
-                });
+                resultResponse.message = "Authentication Error";
+                resultResponse.statusCode = httpStatusCode.UNAUTHORIZED;
+                return this.responseFailed(res, resultResponse);
             }
         } catch (err) {
-            return res.status(BAD_REQUEST).json({
-                error: err.message,
-            });
+
+            resultResponse.message = err.message;
+            resultResponse.statusCode = httpStatusCode.BAD_REQUEST;
+            return this.responseFailed(res, resultResponse);
         }
     }
 }

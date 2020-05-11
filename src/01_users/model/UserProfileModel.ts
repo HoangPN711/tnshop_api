@@ -5,6 +5,6 @@ export class UserProfileModel extends BaseModel{
     public userId : string;
     public fullName : string;
     public birthday : string;
-    public sex : string;
+    public address : string;
 
 }

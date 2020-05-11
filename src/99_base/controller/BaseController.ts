@@ -11,10 +11,10 @@ export class BaseController {
 
     public responseSuccess(res: Response, result: IBaseResponseModel) : object {
 
-        let statusCd = !result.statusCode ? result.statusCode : httpStatusCode.OK;
+        let statusCd = result.statusCode ? result.statusCode : httpStatusCode.OK;
         let data = result.data;
 
-        return res.status(statusCd).send(data)
+        return res.status(statusCd).json(data)
     }
 
     public responseFailed(res: Response, result: IBaseResponseModel) : void  {
@@ -24,7 +24,7 @@ export class BaseController {
             message : result.message,
         };
 
-        res.status(statusCd).send(data)
+        res.status(statusCd).json(data)
     }
 
 }

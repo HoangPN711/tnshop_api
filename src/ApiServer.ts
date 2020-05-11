@@ -3,6 +3,8 @@ import { Request, Response, NextFunction } from 'express';
 import * as bodyParser from "body-parser";
 import { Server } from '@overnightjs/core';
 import {UserController} from "@01_users_controller/UserController";
+import {AuthJwtController} from "@99_base_controller/AuthJwtController";
+
 
 export class ApiServer  extends Server {
 
@@ -16,8 +18,8 @@ export class ApiServer  extends Server {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
         let userController = new UserController();
-
-        super.addControllers([userController]);
+        let authController = new AuthJwtController();
+        super.addControllers([userController, authController]);
     }
 
     public start(port: number) {

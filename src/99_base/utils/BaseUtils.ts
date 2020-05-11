@@ -14,6 +14,9 @@ export class BaseUtils {
     }
 
     public static dateAsYYYYMMDDHHMMSS(date: Date): string {
+        if(date == null){
+            return "";
+        }
         return date.getFullYear()
             + '-' + this.leftPad(date.getMonth() + 1, 2)
             + '-' + this.leftPad(date.getDate(), 2)

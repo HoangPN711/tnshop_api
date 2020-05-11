@@ -14,7 +14,7 @@ export class RoleEntity extends BaseEntity {
     @Column({name:"is_available", type:"boolean", nullable:true})
     isAvailable:boolean;
 
-    @ManyToMany(type => UserAuthEntity, {lazy:true, onDelete:"NO ACTION", nullable:true})
+    @ManyToMany(type => UserAuthEntity, {onDelete:"NO ACTION", nullable:true})
     @JoinTable({name:"auth_user_role"})
     users : UserAuthEntity[]
 }

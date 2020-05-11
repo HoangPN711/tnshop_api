@@ -49,9 +49,7 @@ export class UserController extends BaseController {
     public async createUser(req: Request, res: Response) {
         const userService = new UserService();
         const resultResponse = {} as IBaseResponseModel;
-        const context = new BaseContext();
-        // @ts-ignore
-        context.userId = req.user.id;
+        const context = new BaseContext(req);
 
         const userModel = new UserProfileModel();
 
@@ -71,9 +69,8 @@ export class UserController extends BaseController {
     public async updateUser(req: Request, res: Response) {
         const userService = new UserService();
         const resultResponse = {} as IBaseResponseModel;
-        const context = new BaseContext();
-        // @ts-ignore
-        context.userId = req.user.id;
+        const context = new BaseContext(req);
+
         const userModel = new UserProfileModel();
         const reqBody = req.body;
         userModel.id = reqBody.pk;
